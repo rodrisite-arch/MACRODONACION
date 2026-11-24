@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Quieres saber más? · Macrodonación UAX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#d7263d; --red-dk:#9e1328; --red-lt:#fde7ea;
+  --amber:#f2a516; --amber-dk:#9a6200; --amber-lt:#fff4dc;
+  --ink:#1d1a22; --muted:#5d5866; --line:#ebe6ee; --bg:#fffaf8; --card:#fff;
+  --accent:var(--red); --accent-dk:var(--red-dk); --accent-lt:var(--red-lt);
+  --r:18px;
+}
+body.plasma{--accent:var(--amber); --accent-dk:var(--amber-dk); --accent-lt:var(--amber-lt);}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:"Bricolage Grotesque",Inter,sans-serif;line-height:1.1;letter-spacing:-.01em}
+a{color:var(--accent-dk)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+.hero{background:var(--accent);color:#fff;padding:28px 0 34px;position:relative;overflow:hidden;transition:background .3s}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero::before{content:"";position:absolute;right:40px;bottom:-90px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.08)}
+.tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.2);padding:5px 10px;border-radius:99px}
+.hero h1{font-size:clamp(34px,9vw,52px);font-weight:800;margin:14px 0 10px;position:relative;z-index:1}
+.hero p{font-size:17px;max-width:520px;opacity:.95;position:relative;z-index:1}
+.hero .cta{display:inline-flex;gap:8px;align-items:center;margin-top:20px;background:#fff;color:var(--accent-dk);font-weight:700;padding:13px 20px;border-radius:99px;text-decoration:none;position:relative;z-index:1;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+
+/* SWITCH */
+.switch{position:sticky;top:0;z-index:20;background:rgba(255,250,248,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.switch .wrap{display:flex;gap:8px;padding-top:10px;padding-bottom:10px}
+.switch button{flex:1;font:inherit;font-weight:600;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:99px;padding:10px 8px;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:8px}
+.switch button[aria-selected=true][data-v=medula]{background:var(--red);border-color:var(--red);color:#fff}
+.switch button[aria-selected=true][data-v=plasma]{background:var(--amber);border-color:var(--amber);color:#3b2600}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+/* NAV CHIPS */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;font-size:13px;font-weight:600;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);padding:7px 13px;border-radius:99px}
+
+section{padding:34px 0 6px}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-dk)}
+h2{font-size:clamp(26px,6.5vw,34px);font-weight:800;margin:6px 0 14px}
+h3{font-size:19px;font-weight:700;margin-bottom:6px}
+p+p{margin-top:10px}
+.lead{font-size:17px;color:var(--muted)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.grid2{grid-template-columns:1fr}}
+
+/* BIG STAT */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px}
+.stat{background:var(--accent-lt);border-radius:var(--r);padding:16px}
+.stat b{display:block;font-family:"Bricolage Grotesque";font-size:clamp(28px,8vw,40px);font-weight:800;color:var(--accent-dk);line-height:1}
+.stat span{font-size:14px;color:var(--ink);display:block;margin-top:6px}
+
+/* COMPARE */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.vs>div{padding:16px}
+.vs .yes{background:var(--red-lt)}
+.vs .no{background:#f2f0f4}
+.vs h3{font-size:16px}
+.vs small{display:block;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.vs .yes small{color:var(--red-dk)}
+.vs .no small{color:var(--muted)}
+
+/* REQUIREMENTS */
+.reqs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:520px){.reqs{grid-template-columns:1fr}}
+.req{background:#fff;border:2px solid var(--accent-lt);border-radius:var(--r);padding:16px;text-align:left}
+.req .ico{font-size:26px}
+.req b{display:block;font-family:"Bricolage Grotesque";font-size:24px;font-weight:800;margin:6px 0 2px}
+.req span{font-size:14px;color:var(--muted)}
+
+/* STEPS */
+.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.steps li::before{content:counter(s);width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;font-family:"Bricolage Grotesque";font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+body.plasma .steps li::before{color:#3b2600}
+.steps p{color:var(--muted);font-size:15px}
+
+/* MYTHS FLIP */
+.myths{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.myths{grid-template-columns:1fr}}
+.myth{perspective:1000px;min-height:170px;cursor:pointer;border:0;background:none;font:inherit;text-align:left;padding:0}
+.myth .in{position:relative;width:100%;height:100%;min-height:170px;transition:transform .5s;transform-style:preserve-3d}
+.myth.on .in{transform:rotateY(180deg)}
+.myth .f,.myth .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.myth .f{background:#2a2530;color:#fff}
+.myth .b{background:var(--accent-lt);color:var(--ink);transform:rotateY(180deg);border:2px solid var(--accent)}
+.myth small{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.myth .f p{font-family:"Bricolage Grotesque";font-size:19px;font-weight:700;line-height:1.2}
+.myth .b p{font-size:14.5px}
+.myth .hint{font-size:12px;opacity:.7}
+
+/* QUIZ */
+.quiz{background:#2a2530;color:#fff;border-radius:var(--r);padding:20px}
+.quiz h3{color:#fff}
+.q{margin-top:14px}
+.q p{font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts button{font:inherit;font-size:14px;font-weight:600;border:2px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:99px;padding:8px 16px;cursor:pointer}
+.opts button.sel{background:#fff;color:#2a2530;border-color:#fff}
+.result{margin-top:16px;padding:14px;border-radius:12px;background:rgba(255,255,255,.1);font-size:15px;display:none}
+.result.show{display:block}
+
+/* ACCORDION */
+details{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:15px 48px 15px 16px;font-weight:600;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:24px;font-weight:400;color:var(--accent-dk)}
+details[open] summary::after{content:"–"}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .body{padding:14px 16px 16px;font-size:15px;color:#3b3742}
+details .body ul{padding-left:18px;margin-top:6px}
+details .body li{margin:3px 0}
+.qn{display:inline-block;min-width:26px;font-family:"Bricolage Grotesque";font-weight:800;color:var(--accent-dk)}
+
+/* MATERIALS */
+.mats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.mats{grid-template-columns:1fr}}
+.mat{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;text-decoration:none;color:var(--ink)}
+.mat .ic{flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;font-size:22px}
+.mat b{display:block;font-size:15px}
+.mat span{font-size:13px;color:var(--muted)}
+.mat.soon{opacity:.6;pointer-events:none}
+.mat.soon span::after{content:" · próximamente";font-weight:600}
+
+/* EVENT */
+.event{background:linear-gradient(135deg,var(--red),#8a1430);color:#fff;border-radius:22px;padding:24px;position:relative;overflow:hidden}
+.event .date{font-family:"Bricolage Grotesque";font-weight:800;font-size:clamp(40px,12vw,64px);line-height:.9}
+.event ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.event .heart{position:absolute;right:-10px;bottom:-24px;font-size:140px;opacity:.15}
+
+.contact{background:var(--accent-lt);border-radius:var(--r);padding:16px;font-size:15px}
+.contact b{color:var(--accent-dk)}
+
+footer{margin-top:40px;padding:28px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer ul{padding-left:18px;margin-top:8px}
+footer li{margin:4px 0}
+
+.view{display:none}
+.view.active{display:block}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">U-Lab · Macrodonación UAX 26-27</span>
+    <h1 id="heroTitle">¿Quieres saber más?</h1>
+    <p id="heroText">Puede que tu médula sea la única compatible con alguien que la necesita. Descubre en 5 minutos qué es, cómo se dona y por qué no da miedo.</p>
+    <a class="cta" href="#macrodonacion">Ven el 16 de diciembre →</a>
+  </div>
+</header>
+
+<nav class="switch" aria-label="Tipo de donación">
+  <div class="wrap" role="tablist">
+    <button role="tab" data-v="medula" aria-selected="true"><span class="dot" style="background:#fff;border:2px solid currentColor"></span>Médula ósea</button>
+    <button role="tab" data-v="plasma" aria-selected="false"><span class="dot" style="background:#f2a516"></span>Plasma</button>
+  </div>
+</nav>
+
+<!-- ================= MÉDULA ================= -->
+<main id="medula" class="view active">
+  <div class="wrap">
+    <div class="chips">
+      <a href="#m-que">Qué es</a><a href="#m-datos">Datos</a><a href="#m-quien">¿Puedo donar?</a><a href="#m-como">Cómo se dona</a><a href="#m-mitos">Mitos</a><a href="#m-faq">Saber más</a><a href="#m-mat">Vídeos y podcast</a><a href="#macrodonacion">Macrodonación</a>
+    </div>
+
+    <section id="m-que">
+      <span class="kicker">Lo básico</span>
+      <h2>Médula ósea ≠ médula espinal</h2>
+      <p class="lead">Es la confusión nº 1, y la que más miedo da. No tiene nada que ver con la columna ni con los nervios.</p>
+      <div class="vs" style="margin-top:16px">
+        <div class="yes"><small>Esto SÍ se dona</small><h3>Médula ósea</h3><p style="font-size:14px">Tejido esponjoso <b>dentro de los huesos</b> (cadera, esternón…). Es la "fábrica" de la sangre: produce glóbulos rojos, blancos y plaquetas a partir de las <b>células madre hematopoyéticas</b>.</p></div>
+        <div class="no"><small>Esto NO se toca</small><h3>Médula espinal</h3><p style="font-size:14px">Parte del <b>sistema nervioso</b>, dentro de la columna vertebral. Transmite señales entre el cerebro y el cuerpo. Nunca se dona.</p></div>
+      </div>
+      <p style="margin-top:14px">Cuando la médula de un paciente falla (por ejemplo, por una leucemia), un trasplante sustituye sus células madre enfermas por las de un donante sano. Para muchos pacientes es la única opción de curación.</p>
+    </section>
+
+    <section id="m-datos">
+      <span class="kicker">¿Por qué importa?</span>
+      <h2>Tu ADN podría ser la pieza que falta</h2>
+      <div class="stats">
+        <div class="stat"><b>25%</b><span>probabilidad de que un hermano sea compatible</span></div>
+        <div class="stat"><b>~70%</b><span>de los pacientes no tiene un familiar compatible y depende de un desconocido</span></div>
+        <div class="stat"><b>520.850</b><span>donantes en el REDMO a cierre de 2025</span></div>
+        <div class="stat"><b>77</b><span>personas se inscriben cada día en España (2026)</span></div>
+      </div>
+      <p class="note">Los donantes jóvenes dan mejores resultados en el trasplante: por eso solo se inscriben nuevos donantes de 18 a 40 años. Tú, universitario/a, eres el perfil más buscado.</p>
+    </section>
+
+    <section id="m-quien">
+      <span class="kicker">Requisitos</span>
+      <h2>¿Puedo ser donante?</h2>
+      <div class="reqs">
+        <div class="req"><div class="ico">🎂</div><b>18–40 años</b><span>para inscribirte (sigues activo hasta los 60)</span></div>
+        <div class="req"><div class="ico">⚖️</div><b>+50 kg</b><span>de peso</span></div>
+        <div class="req"><div class="ico">💚</div><b>Buena salud</b><span>sin enfermedades graves o transmisibles</span></div>
+      </div>
+
+      <div class="quiz" style="margin-top:16px">
+        <h3>Test rápido: ¿podrías inscribirte?</h3>
+        <div class="q" data-q="edad"><p>¿Tienes entre 18 y 40 años?</p><div class="opts"><button data-a="si">Sí</button><button data-a="no">No</button></div></div>
+        <div class="q" data-q="peso"><p>¿Pesas más de 50 kg?</p><div class="opts"><button data-a="si">Sí</button><button data-a="no">No</button></div></div>
+        <div class="q" data-q="salud"><p>¿Estás sano/a, sin enfermedades graves o infecciosas?</p><div class="opts"><button data-a="si">Sí</button><button data-a="no">No</button><button data-a="duda">No lo sé</button></div></div>
+        <div class="result" id="quizRes"></div>
+      </div>
+    </section>
+
+    <section id="m-como">
+      <span class="kicker">El proceso</span>
+      <h2>De la inscripción a salvar una vida</h2>
+      <ol class="steps">
+        <li><div><h3>Te informas y firmas</h3><p>Lees la información y firmas el consentimiento informado. ¡Ya lo estás haciendo!</p></div></li>
+        <li><div><h3>Muestra pequeña</h3><p>Un tubo de sangre o un frotis de saliva. Con él se estudia tu tipaje <b>HLA</b> (tu "huella" genética de compatibilidad).</p></div></li>
+        <li><div><h3>Entras en el REDMO</h3><p>Tus datos se unen al registro mundial: puedes ser compatible con alguien de cualquier país.</p></div></li>
+        <li><div><h3>Si eres compatible, te llaman</h3><p>Puede pasar en meses, años… o nunca. Te hacen más pruebas y confirmas si sigues queriendo donar.</p></div></li>
+        <li><div><h3>Donas</h3><p>Normalmente por sangre periférica, sin quirófano. Tu médula se regenera por completo.</p></div></li>
+      </ol>
+
+      <h3 style="margin-top:26px">Las 2 formas de donar</h3>
+      <div class="grid2" style="margin-top:8px">
+        <div class="card"><span class="kicker">La más habitual</span><h3 style="margin-top:4px">🩸 Sangre periférica</h3><p style="font-size:14.5px">4–5 días antes te pones unas inyecciones subcutáneas de <b>factor de crecimiento (G-CSF)</b> que hacen salir las células madre a la sangre. Luego se recogen por <b>aféresis</b>: como una donación de sangre larga, por el brazo, sin anestesia y sin ingreso.</p></div>
+        <div class="card"><span class="kicker">Según el paciente</span><h3 style="margin-top:4px">🦴 Médula ósea</h3><p style="font-size:14.5px">En quirófano, <b>con anestesia</b>, se extrae médula con punciones en la cresta ilíaca (parte trasera de la cadera). Ingreso de 36–48 h. Después, molestias leves en la zona unos días.</p></div>
+      </div>
+      <p class="note">El método lo decide lo que necesite el paciente, y siempre se acuerda contigo.</p>
+    </section>
+
+    <section id="m-mitos">
+      <span class="kicker">Toca cada tarjeta</span>
+      <h2>Mitos vs realidad</h2>
+      <div class="myths">
+        <button class="myth"><div class="in"><div class="f"><small>Mito</small><p>"Te pinchan en la columna"</p><span class="hint">Toca para ver la realidad ↻</span></div><div class="b"><small>Realidad</small><p>La médula ósea está en los huesos planos, como la cadera. La columna y la médula espinal no se tocan nunca.</p></div></div></button>
+        <button class="myth"><div class="in"><div class="f"><small>Mito</small><p>"Duele muchísimo"</p><span class="hint">Toca para ver la realidad ↻</span></div><div class="b"><small>Realidad</small><p>La mayoría dona por aféresis, parecido a donar sangre. Si es por punción, es con anestesia; después puede haber molestias leves unos días.</p></div></div></button>
+        <button class="myth"><div class="in"><div class="f"><small>Mito</small><p>"Pierdes médula para siempre"</p><span class="hint">Toca para ver la realidad ↻</span></div><div class="b"><small>Realidad</small><p>La médula se regenera por completo. Por eso podrías volver a donar si fueras compatible con otro paciente.</p></div></div></button>
+        <button class="myth"><div class="in"><div class="f"><small>Mito</small><p>"Inscribirme = donar ya"</p><span class="hint">Toca para ver la realidad ↻</span></div><div class="b"><small>Realidad</small><p>Inscribirte solo te pone en la lista. Solo donarás si apareces compatible con un paciente, y puedes retirarte cuando quieras.</p></div></div></button>
+        <button class="myth"><div class="in"><div class="f"><small>Mito</small><p>"Seguro que dono a mi familia"</p><span class="hint">Toca para ver la realidad ↻</span></div><div class="b"><small>Realidad</small><p>La donación es anónima, altruista y universal: donas a quien lo necesite, en cualquier parte del mundo.</p></div></div></button>
+        <button class="myth"><div class="in"><div class="f"><small>Mito</small><p>"Mi familia ya será compatible"</p><span class="hint">Toca para ver la realidad ↻</span></div><div class="b"><small>Realidad</small><p>Un hermano solo tiene un 25% de probabilidades. La mayoría de pacientes necesita a un desconocido. Como tú.</p></div></div></button>
+      </div>
+    </section>
+
+    <section id="m-faq">
+      <span class="kicker">Saber más</span>
+      <h2>Las 9 preguntas clave</h2>
+      <p class="lead" style="margin-bottom:14px">Respuestas claras basadas en fuentes oficiales (ONT, REDMO, Centro de Transfusión).</p>
+
+      <details><summary><span class="qn">1</span>¿Qué enfermedades necesitan un trasplante de médula?</summary><div class="body">
+        <ul><li><b>Cánceres de la sangre:</b> leucemias (la indicación principal), linfomas, mieloma múltiple, síndromes mielodisplásicos.</li>
+        <li><b>Fallos de la médula:</b> aplasia medular grave.</li>
+        <li><b>Inmunodeficiencias</b> congénitas graves y algunas <b>enfermedades genéticas</b> de la sangre (p. ej., talasemia).</li></ul>
+        <p style="margin-top:8px">En muchas de ellas, el trasplante es la única opción curativa.</p></div></details>
+
+      <details><summary><span class="qn">2</span>¿Cómo se prepara al paciente? (inmunodepresión)</summary><div class="body">
+        <p>Antes del trasplante, el paciente recibe el <b>acondicionamiento</b>: quimioterapia (a veces con radioterapia) para eliminar la médula enferma y bajar sus defensas, de modo que no rechace las células del donante.</p>
+        <p>Tras el trasplante sigue con <b>inmunosupresores</b> para evitar el rechazo y la <b>enfermedad injerto contra receptor</b>. Durante semanas está muy expuesto a infecciones, por eso permanece aislado y con medidas de protección hasta que la nueva médula "prende".</p></div></details>
+
+      <details><summary><span class="qn">3</span>¿Qué son las pruebas de histocompatibilidad (HLA)?</summary><div class="body">
+        <p>El <b>HLA</b> son proteínas en la superficie de las células que el sistema inmune usa para distinguir "lo propio" de "lo ajeno". Sus genes están en el <b>cromosoma 6</b> y son de los más variables del genoma.</p>
+        <p>Heredamos un bloque (haplotipo) de cada progenitor, por eso un hermano tiene un 25% de probabilidad de ser idéntico. Entre desconocidos se comparan sobre todo HLA-A, -B, -C, -DRB1 y -DQB1: cuanto más se parezcan, menor riesgo de rechazo.</p></div></details>
+
+      <details><summary><span class="qn">4</span>¿Qué tipos de donación hay? ¿Duele?</summary><div class="body">
+        <p><b>Sangre periférica (aféresis):</b> sin anestesia, ambulatoria, tras unos días de G-CSF. Puede dar molestias tipo gripe o dolor óseo leve durante el tratamiento.</p>
+        <p><b>Médula ósea (punción en la cadera):</b> en quirófano con anestesia, ingreso de 36–48 h; después, dolor leve en la zona unos días.</p>
+        <p>Siempre bajo control médico, y el método depende de lo que necesite el paciente.</p></div></details>
+
+      <details><summary><span class="qn">5</span>¿Qué pasa después de registrarme? ¿Y si soy compatible?</summary><div class="body">
+        <p>Tus datos y tu tipaje HLA quedan en el REDMO, conectado con los registros de todo el mundo. Lo más probable es que no te llamen nunca, pero si encajas con un paciente:</p>
+        <ul><li>Te contactan para confirmar que sigues queriendo donar.</li><li>Se repiten análisis para confirmar la compatibilidad.</li><li>Te hacen un chequeo médico completo.</li><li>Se acuerda el método y la fecha de la donación.</li></ul>
+        <p style="margin-top:8px">Es anónimo y altruista: no sabrás quién es el paciente. Mantén tus datos de contacto actualizados.</p></div></details>
+
+      <details><summary><span class="qn">6</span>¿Qué es la médula ósea exactamente?</summary><div class="body">
+        <p>Es el tejido blando del interior de algunos huesos (cadera, esternón, vértebras, costillas). Contiene las <b>células madre hematopoyéticas</b>, que fabrican todas las células de la sangre.</p>
+        <p><b>No es la médula espinal</b>, que es tejido nervioso dentro de la columna. Popularmente, la médula ósea es el "tuétano".</p></div></details>
+
+      <details><summary><span class="qn">7</span>¿Qué necesito para ser donante?</summary><div class="body">
+        <ul><li>Tener entre 18 y 40 años para inscribirte.</li><li>Pesar más de 50 kg.</li><li>Buena salud, sin enfermedades graves o transmisibles.</li><li>Estar bien informado/a y firmar el consentimiento.</li></ul></div></details>
+
+      <details><summary><span class="qn">8</span>¿Cómo me inscribo en el REDMO? (nacional e internacional)</summary><div class="body">
+        <p>El <b>REDMO</b> (Registro Español de Donantes de Médula Ósea) lo gestiona la Fundación Josep Carreras con el Ministerio de Sanidad y la ONT. En Madrid, te inscribes a través del <b>Centro de Transfusión de la Comunidad de Madrid</b>.</p>
+        <p>Una vez dentro, estás disponible para pacientes de todo el mundo: el REDMO está unido a la red internacional de registros (WMDA), con más de 40 millones de donantes.</p>
+        <p><b>Lo más fácil:</b> inscribirte el día de la Macrodonación en el campus.</p></div></details>
+
+      <details><summary><span class="qn">9</span>¿Cómo se hace una campaña de difusión como esta?</summary><div class="body">
+        <p>Esta campaña la han creado estudiantes de Biotecnología, Biomedicina, Enfermería y Técnico de Laboratorio de la UAX dentro del U-Lab, junto al Centro de Transfusión de Madrid y Equipo Médula: cartelería, vídeos, podcast, charlas en aulas y este QR. Mira el material de la Oficina del Voluntariado en la sección de materiales.</p></div></details>
+    </section>
+
+    <section id="m-mat">
+      <span class="kicker">Hecho por estudiantes UAX</span>
+      <h2>Vídeos, podcast y más</h2>
+      <div class="mats" id="matsMedula"></div>
+    </section>
+  </div>
+</main>
+
+<!-- ================= PLASMA ================= -->
+<main id="plasma" class="view">
+  <div class="wrap">
+    <div class="chips">
+      <a href="#p-que">Qué es</a><a href="#p-quien">Requisitos</a><a href="#p-como">Cómo se dona</a><a href="#p-faq">Saber más</a><a href="#p-donde">Dónde</a><a href="#p-mat">Materiales</a>
+    </div>
+
+    <section id="p-que">
+      <span class="kicker">Lo básico</span>
+      <h2>Plasma: el "oro líquido" de tu sangre</h2>
+      <p class="lead">El plasma es la parte líquida y amarillenta de la sangre: más de la mitad de su volumen. Lleva proteínas como anticuerpos y factores de coagulación.</p>
+      <p style="margin-top:12px">Con él se fabrican <b>medicamentos que no se pueden producir de otra forma</b>: para inmunodeficiencias primarias, enfermedades autoinmunes, hemofilia, quemados graves…</p>
+      <div class="stats" style="margin-top:16px">
+        <div class="stat"><b>85%</b><span>del plasma de Madrid se destina a fabricar medicamentos</span></div>
+        <div class="stat"><b>6.000</b><span>pacientes en Madrid reciben fármacos derivados del plasma</span></div>
+      </div>
+    </section>
+
+    <section id="p-quien">
+      <span class="kicker">Requisitos</span>
+      <h2>¿Puedo donar plasma?</h2>
+      <div class="reqs">
+        <div class="req"><div class="ico">🪪</div><b>+18 años</b><span>mayor de edad</span></div>
+        <div class="req"><div class="ico">⚖️</div><b>+50 kg</b><span>de peso</span></div>
+        <div class="req"><div class="ico">💛</div><b>Buena salud</b><span>los mismos requisitos que para donar sangre</span></div>
+      </div>
+    </section>
+
+    <section id="p-como">
+      <span class="kicker">El proceso</span>
+      <h2>Así es una plasmaféresis</h2>
+      <ol class="steps">
+        <li><div><h3>Pides cita</h3><p>Por teléfono o correo al Centro de Transfusión (abajo tienes los datos).</p></div></li>
+        <li><div><h3>Chequeo previo</h3><p>Un breve estudio médico para comprobar que estás bien para donar.</p></div></li>
+        <li><div><h3>La máquina separa</h3><p>Se extrae sangre del brazo, una máquina separa el plasma y te devuelve el resto (glóbulos rojos y plaquetas).</p></div></li>
+        <li><div><h3>Unos 40 minutos</h3><p>Algo más largo que una donación de sangre normal. Tu cuerpo repone el plasma rápidamente.</p></div></li>
+      </ol>
+      <p class="note">La Comunidad de Madrid anima a quien cumpla los requisitos a donar plasma al menos dos veces al año.</p>
+    </section>
+
+    <section id="p-faq">
+      <span class="kicker">Saber más</span>
+      <h2>Preguntas frecuentes</h2>
+      <details><summary><span class="qn">1</span>¿Plasma y médula son lo mismo?</summary><div class="body"><p>No. El <b>plasma</b> es la parte líquida de la sangre y lo dona cualquier adulto sano, cuando quiera. La <b>médula</b> son células madre: te inscribes en un registro y solo donas si eres compatible con un paciente concreto.</p></div></details>
+      <details><summary><span class="qn">2</span>¿Para qué se usa el plasma?</summary><div class="body"><p>Una pequeña parte se transfunde directamente a pacientes. La mayoría se envía a fabricar medicamentos (inmunoglobulinas, albúmina, factores de coagulación).</p></div></details>
+      <details><summary><span class="qn">3</span>¿Me quedo débil después?</summary><div class="body"><p>Como recuperas tus glóbulos rojos, la mayoría de personas se encuentra bien. Bebe líquido, come algo y evita el ejercicio intenso ese día.</p></div></details>
+      <details><summary><span class="qn">4</span>¿Puedo donar plasma si ya dono sangre?</summary><div class="body"><p>Sí, son compatibles, aunque hay que respetar intervalos entre donaciones. El personal del Centro de Transfusión te indicará cuándo puedes volver.</p></div></details>
+      <p class="note">El equipo del U-Lab completará esta sección con su documento "Saber más" sobre plasma.</p>
+    </section>
+
+    <section id="p-donde">
+      <span class="kicker">Dónde</span>
+      <h2>¿Dónde puedo donar plasma en Madrid?</h2>
+      <div class="contact">
+        <p><b>Centro de Transfusión de la Comunidad de Madrid</b> (Valdebernardo) y puntos fijos en hospitales públicos como La Paz, del Henares, Infanta Sofía, Ramón y Cajal, Príncipe de Asturias, Móstoles y Severo Ochoa.</p>
+        <p style="margin-top:10px">📞 Cita: <b>91 301 72 40</b><br>✉️ <b>donarplasma@salud.madrid.org</b></p>
+      </div>
+    </section>
+
+    <section id="p-mat">
+      <span class="kicker">Hecho por estudiantes UAX</span>
+      <h2>Materiales sobre plasma</h2>
+      <div class="mats" id="matsPlasma"></div>
+    </section>
+  </div>
+</main>
+
+<!-- ================= EVENTO (común) ================= -->
+<div class="wrap">
+  <section id="macrodonacion">
+    <div class="event">
+      <span class="tag">Macrodonación UAX</span>
+      <div class="date" style="margin-top:12px">16 DIC</div>
+      <h3 style="margin-top:6px;font-size:22px">Hazte donante de médula en 10 minutos</h3>
+      <ul>
+        <li>🕙 De 10:00 a 14:00 h</li>
+        <li>📍 Ágora del campus UAX Villanueva de la Cañada (también campus Chamberí, Málaga y Oviedo)</li>
+        <li>🧾 Mesa de información y registro · toma de muestra</li>
+        <li>🤝 Con el Centro de Transfusión de la Comunidad de Madrid y Equipo Médula</li>
+      </ul>
+      <div class="heart">♥</div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>Proyecto U-Lab Macrodonación de Médula Ósea · Curso 2026-27</b><br>Universidad Alfonso X el Sabio · Biotecnología, Biomedicina, Enfermería y Técnico de Laboratorio. Colaboran: Centro de Transfusión de la Comunidad de Madrid y Equipo Médula.</p>
+    <p style="margin-top:12px"><b>Fuentes oficiales</b></p>
+    <ul>
+      <li><a href="https://www.comunidad.madrid/salud/donacion-medula-osea">Comunidad de Madrid · Donación de médula ósea</a></li>
+      <li><a href="https://www.sanidad.gob.es/gabinete/notasPrensa.do?id=6980">Ministerio de Sanidad / ONT · Datos REDMO 2026</a></li>
+      <li><a href="https://fcarreras.org/registro-de-donantes-de-medula-osea-redmo/">Fundación Josep Carreras · REDMO</a></li>
+      <li><a href="https://fcarreras.org/wp-content/uploads/2023/05/Guia-del-donante-de-medula-osea.pdf">Guía del donante de médula ósea (F. J. Carreras)</a></li>
+      <li><a href="https://www.comunidad.madrid/hospital/centrodetransfusion/ciudadanos-0">Centro de Transfusión de la Comunidad de Madrid</a></li>
+    </ul>
+    <p style="margin-top:12px">Información divulgativa. No sustituye la valoración del personal sanitario.</p>
+  </div>
+</footer>
+
+<script>
+/* ======== EDITAR AQUÍ: enlaces a los materiales de los otros grupos ========
+   Pega la URL (YouTube, Drive, Spotify…) en "url". Si está vacía, sale como "próximamente". */
+const MATERIALES = {
+  medula: [
+    {ic:"🎬", t:"¿Sabías que…?", d:"Vídeo corto · datos impactantes", url:""},
+    {ic:"🎬", t:"Rompiendo mitos", d:"Vídeo corto", url:""},
+    {ic:"🎬", t:"Hazte donante en 30 segundos", d:"Vídeo corto", url:""},
+    {ic:"🎙️", t:"Podcast · Episodio 1", d:"Qué es donar médula y por qué importa", url:""},
+    {ic:"🎙️", t:"Podcast · Episodio 2", d:"El camino del donante", url:""},
+    {ic:"🎙️", t:"Podcast · Episodio 3", d:"El impacto en el paciente", url:""},
+    {ic:"📺", t:"Vídeo para el Ayuntamiento", d:"Vídeo formal · Villanueva de la Cañada", url:""},
+    {ic:"🖼️", t:"Infografía", d:"La donación en un vistazo (PNG/PDF)", url:""},
+    {ic:"📊", t:"Presentación completa", d:"PPT de difusión", url:""},
+    {ic:"📄", t:"Documento Saber más", d:"Las 9 preguntas en PDF", url:""},
+    {ic:"📣", t:"Cómo hacer una campaña", d:"Oficina del Voluntariado · PPT", url:""}
+  ],
+  plasma: [
+    {ic:"📄", t:"Saber más · Plasma", d:"Documento PDF", url:""},
+    {ic:"📊", t:"Presentación sobre plasma", d:"PPT formal", url:""}
+  ]
+};
+
+function renderMats(list, el){
+  el.innerHTML = list.map(m => {
+    const soon = !m.url;
+    return `<a class="mat${soon?' soon':''}" ${soon?'':`href="${m.url}" target="_blank" rel="noopener"`}>
+      <div class="ic">${m.ic}</div><div><b>${m.t}</b><span>${m.d}</span></div></a>`;
+  }).join("");
+}
+renderMats(MATERIALES.medula, document.getElementById("matsMedula"));
+renderMats(MATERIALES.plasma, document.getElementById("matsPlasma"));
+
+/* Switch médula / plasma */
+const HERO = {
+  medula:{t:"¿Quieres saber más?", p:"Puede que tu médula sea la única compatible con alguien que la necesita. Descubre en 5 minutos qué es, cómo se dona y por qué no da miedo."},
+  plasma:{t:"Dona plasma, crea medicamentos", p:"Con tu plasma se fabrican fármacos que miles de pacientes necesitan y que no se pueden producir en un laboratorio."}
+};
+function show(v){
+  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("active", x.id===v));
+  document.querySelectorAll(".switch button").forEach(b=>b.setAttribute("aria-selected", b.dataset.v===v));
+  document.body.classList.toggle("plasma", v==="plasma");
+  document.getElementById("heroTitle").textContent = HERO[v].t;
+  document.getElementById("heroText").textContent = HERO[v].p;
+}
+document.querySelectorAll(".switch button").forEach(b=>b.addEventListener("click",()=>{
+  show(b.dataset.v);
+  if(location.hash!=="#"+b.dataset.v) history.replaceState(null,"","#"+b.dataset.v);
+}));
+if(location.hash==="#plasma") show("plasma");
+
+/* Mitos */
+document.querySelectorAll(".myth").forEach(m=>m.addEventListener("click",()=>m.classList.toggle("on")));
+
+/* Quiz */
+const ans={};
+document.querySelectorAll(".q").forEach(q=>{
+  q.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
+    q.querySelectorAll("button").forEach(x=>x.classList.remove("sel"));
+    b.classList.add("sel"); ans[q.dataset.q]=b.dataset.a; evalQuiz();
+  }));
+});
+function evalQuiz(){
+  const r=document.getElementById("quizRes");
+  if(Object.keys(ans).length<3) return;
+  let msg;
+  if(ans.edad==="no") msg="Ahora mismo no puedes inscribirte en el registro de médula (solo de 18 a 40 años), ¡pero puedes ayudar compartiendo esta página! Y si eres mayor de edad, quizá puedas donar <b>sangre o plasma</b>.";
+  else if(ans.peso==="no") msg="Para donar hace falta pesar más de 50 kg. Aun así, compartir esta información también salva vidas: ¡pásala!";
+  else if(ans.salud==="no") msg="Algunas enfermedades impiden donar. Consulta tu caso con el personal sanitario el día de la Macrodonación: ellos te dirán si puedes.";
+  else if(ans.salud==="duda") msg="¡Probablemente sí! Ven el <b>16 de diciembre</b> y el personal sanitario resolverá tus dudas antes de inscribirte.";
+  else msg="🎉 <b>¡Cumples los requisitos!</b> Eres justo el perfil que más se necesita. Te esperamos el <b>16 de diciembre de 10 a 14 h</b> en el Ágora.";
+  r.innerHTML=msg; r.classList.add("show");
+}
+</script>
+</body>
+</html>

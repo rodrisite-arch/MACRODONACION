@@ -131,6 +131,9 @@ details .body li{margin:3px 0}
 .event ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:6px;font-size:15px}
 .event .heart{position:absolute;right:-10px;bottom:-24px;font-size:140px;opacity:.15}
 
+.event .maps{display:inline-flex;margin-top:16px;background:#fff;color:var(--red-dk);font-weight:700;padding:11px 18px;border-radius:99px;text-decoration:none;position:relative;z-index:1}
+.contact-ev{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.3);display:flex;flex-direction:column;gap:4px;font-size:15px;position:relative;z-index:1}
+.contact-ev a{color:#fff;font-weight:700}
 .contact{background:var(--accent-lt);border-radius:var(--r);padding:16px;font-size:15px}
 .contact b{color:var(--accent-dk)}
 
@@ -159,7 +162,7 @@ footer li{margin:4px 0}
 <main id="medula" class="view active">
   <div class="wrap">
     <div class="chips">
-      <a href="#m-que">Qué es</a><a href="#m-datos">Datos</a><a href="#m-quien">¿Puedo donar?</a><a href="#m-como">Cómo se dona</a><a href="#m-mitos">Mitos</a><a href="#m-faq">Saber más</a><a href="#m-mat">Vídeos y podcast</a><a href="#macrodonacion">Macrodonación</a>
+      <a href="#m-que">Qué es</a><a href="#m-datos">Datos</a><a href="#m-quien">¿Puedo donar?</a><a href="#m-como">Cómo se dona</a><a href="#m-mitos">Mitos</a><a href="#m-faq">Saber más</a><a href="#macrodonacion">Macrodonación</a>
     </div>
 
     <section id="m-que">
@@ -277,14 +280,9 @@ footer li{margin:4px 0}
         <p><b>Lo más fácil:</b> inscribirte el día de la Macrodonación en el campus.</p></div></details>
 
       <details><summary><span class="qn">9</span>¿Cómo se hace una campaña de difusión como esta?</summary><div class="body">
-        <p>Esta campaña la han creado estudiantes de Biotecnología, Biomedicina, Enfermería y Técnico de Laboratorio de la UAX dentro del U-Lab, junto al Centro de Transfusión de Madrid y Equipo Médula: cartelería, vídeos, podcast, charlas en aulas y este QR. Mira el material de la Oficina del Voluntariado en la sección de materiales.</p></div></details>
+        <p>Esta campaña la han creado estudiantes de Biotecnología, Biomedicina, Enfermería y Técnico de Laboratorio de la UAX dentro del U-Lab, junto al Centro de Transfusión de Madrid y Equipo Médula: cartelería, vídeos, podcast, charlas en aulas y este QR.</p></div></details>
     </section>
 
-    <section id="m-mat">
-      <span class="kicker">Hecho por estudiantes UAX</span>
-      <h2>Vídeos, podcast y más</h2>
-      <div class="mats" id="matsMedula"></div>
-    </section>
   </div>
 </main>
 
@@ -302,6 +300,12 @@ footer li{margin:4px 0}
         <li>🧾 Mesa de información y registro · toma de muestra</li>
         <li>🤝 Con el Centro de Transfusión de la Comunidad de Madrid y Equipo Médula</li>
       </ul>
+      <a class="maps" id="mapsLink" href="https://www.comunidad.madrid/donarsangre" target="_blank" rel="noopener">🌐 Web del Centro de Transfusión</a>
+      <div class="contact-ev">
+        <b>¿Dudas? Centro de Transfusión de la Comunidad de Madrid</b>
+        <span>📞 Teléfono gratuito: <a href="tel:900303530">900 30 35 30</a></span>
+        <span>✉️ <a href="mailto:donarmedula@salud.madrid.org">donarmedula@salud.madrid.org</a></span>
+      </div>
       <div class="heart">♥</div>
     </div>
   </section>
@@ -323,32 +327,6 @@ footer li{margin:4px 0}
 </footer>
 
 <script>
-/* ======== EDITAR AQUÍ: enlaces a los materiales de los otros grupos ========
-   Pega la URL (YouTube, Drive, Spotify…) en "url". Si está vacía, sale como "próximamente". */
-const MATERIALES = {
-  medula: [
-    {ic:"🎬", t:"¿Sabías que…?", d:"Vídeo corto · datos impactantes", url:""},
-    {ic:"🎬", t:"Rompiendo mitos", d:"Vídeo corto", url:""},
-    {ic:"🎬", t:"Hazte donante en 30 segundos", d:"Vídeo corto", url:""},
-    {ic:"🎙️", t:"Podcast · Episodio 1", d:"Qué es donar médula y por qué importa", url:""},
-    {ic:"🎙️", t:"Podcast · Episodio 2", d:"El camino del donante", url:""},
-    {ic:"🎙️", t:"Podcast · Episodio 3", d:"El impacto en el paciente", url:""},
-    {ic:"📺", t:"Vídeo para el Ayuntamiento", d:"Vídeo formal · Villanueva de la Cañada", url:""},
-    {ic:"🖼️", t:"Infografía", d:"La donación en un vistazo (PNG/PDF)", url:""},
-    {ic:"📊", t:"Presentación completa", d:"PPT de difusión", url:""},
-    {ic:"📄", t:"Documento Saber más", d:"Las 9 preguntas en PDF", url:""},
-    {ic:"📣", t:"Cómo hacer una campaña", d:"Oficina del Voluntariado · PPT", url:""}
-  ]
-};
-
-function renderMats(list, el){
-  el.innerHTML = list.map(m => {
-    const soon = !m.url;
-    return `<a class="mat${soon?' soon':''}" ${soon?'':`href="${m.url}" target="_blank" rel="noopener"`}>
-      <div class="ic">${m.ic}</div><div><b>${m.t}</b><span>${m.d}</span></div></a>`;
-  }).join("");
-}
-renderMats(MATERIALES.medula, document.getElementById("matsMedula"));
 
 
 /* Mitos */

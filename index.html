@@ -15,7 +15,6 @@
   --accent:var(--red); --accent-dk:var(--red-dk); --accent-lt:var(--red-lt);
   --r:18px;
 }
-body.plasma{--accent:var(--amber); --accent-dk:var(--amber-dk); --accent-lt:var(--amber-lt);}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
@@ -32,13 +31,6 @@ a{color:var(--accent-dk)}
 .hero p{font-size:17px;max-width:520px;opacity:.95;position:relative;z-index:1}
 .hero .cta{display:inline-flex;gap:8px;align-items:center;margin-top:20px;background:#fff;color:var(--accent-dk);font-weight:700;padding:13px 20px;border-radius:99px;text-decoration:none;position:relative;z-index:1;box-shadow:0 6px 20px rgba(0,0,0,.15)}
 
-/* SWITCH */
-.switch{position:sticky;top:0;z-index:20;background:rgba(255,250,248,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.switch .wrap{display:flex;gap:8px;padding-top:10px;padding-bottom:10px}
-.switch button{flex:1;font:inherit;font-weight:600;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:99px;padding:10px 8px;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:8px}
-.switch button[aria-selected=true][data-v=medula]{background:var(--red);border-color:var(--red);color:#fff}
-.switch button[aria-selected=true][data-v=plasma]{background:var(--amber);border-color:var(--amber);color:#3b2600}
-.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
 
 /* NAV CHIPS */
 .chips{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
@@ -84,7 +76,6 @@ p+p{margin-top:10px}
 .steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px}
 .steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
 .steps li::before{content:counter(s);width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;font-family:"Bricolage Grotesque";font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
-body.plasma .steps li::before{color:#3b2600}
 .steps p{color:var(--muted);font-size:15px}
 
 /* MYTHS FLIP */
@@ -163,12 +154,6 @@ footer li{margin:4px 0}
   </div>
 </header>
 
-<nav class="switch" aria-label="Tipo de donación">
-  <div class="wrap" role="tablist">
-    <button role="tab" data-v="medula" aria-selected="true"><span class="dot" style="background:#fff;border:2px solid currentColor"></span>Médula ósea</button>
-    <button role="tab" data-v="plasma" aria-selected="false"><span class="dot" style="background:#f2a516"></span>Plasma</button>
-  </div>
-</nav>
 
 <!-- ================= MÉDULA ================= -->
 <main id="medula" class="view active">
@@ -303,72 +288,6 @@ footer li{margin:4px 0}
   </div>
 </main>
 
-<!-- ================= PLASMA ================= -->
-<main id="plasma" class="view">
-  <div class="wrap">
-    <div class="chips">
-      <a href="#p-que">Qué es</a><a href="#p-quien">Requisitos</a><a href="#p-como">Cómo se dona</a><a href="#p-faq">Saber más</a><a href="#p-donde">Dónde</a><a href="#p-mat">Materiales</a>
-    </div>
-
-    <section id="p-que">
-      <span class="kicker">Lo básico</span>
-      <h2>Plasma: el "oro líquido" de tu sangre</h2>
-      <p class="lead">El plasma es la parte líquida y amarillenta de la sangre: más de la mitad de su volumen. Lleva proteínas como anticuerpos y factores de coagulación.</p>
-      <p style="margin-top:12px">Con él se fabrican <b>medicamentos que no se pueden producir de otra forma</b>: para inmunodeficiencias primarias, enfermedades autoinmunes, hemofilia, quemados graves…</p>
-      <div class="stats" style="margin-top:16px">
-        <div class="stat"><b>85%</b><span>del plasma de Madrid se destina a fabricar medicamentos</span></div>
-        <div class="stat"><b>6.000</b><span>pacientes en Madrid reciben fármacos derivados del plasma</span></div>
-      </div>
-    </section>
-
-    <section id="p-quien">
-      <span class="kicker">Requisitos</span>
-      <h2>¿Puedo donar plasma?</h2>
-      <div class="reqs">
-        <div class="req"><div class="ico">🪪</div><b>+18 años</b><span>mayor de edad</span></div>
-        <div class="req"><div class="ico">⚖️</div><b>+50 kg</b><span>de peso</span></div>
-        <div class="req"><div class="ico">💛</div><b>Buena salud</b><span>los mismos requisitos que para donar sangre</span></div>
-      </div>
-    </section>
-
-    <section id="p-como">
-      <span class="kicker">El proceso</span>
-      <h2>Así es una plasmaféresis</h2>
-      <ol class="steps">
-        <li><div><h3>Pides cita</h3><p>Por teléfono o correo al Centro de Transfusión (abajo tienes los datos).</p></div></li>
-        <li><div><h3>Chequeo previo</h3><p>Un breve estudio médico para comprobar que estás bien para donar.</p></div></li>
-        <li><div><h3>La máquina separa</h3><p>Se extrae sangre del brazo, una máquina separa el plasma y te devuelve el resto (glóbulos rojos y plaquetas).</p></div></li>
-        <li><div><h3>Unos 40 minutos</h3><p>Algo más largo que una donación de sangre normal. Tu cuerpo repone el plasma rápidamente.</p></div></li>
-      </ol>
-      <p class="note">La Comunidad de Madrid anima a quien cumpla los requisitos a donar plasma al menos dos veces al año.</p>
-    </section>
-
-    <section id="p-faq">
-      <span class="kicker">Saber más</span>
-      <h2>Preguntas frecuentes</h2>
-      <details><summary><span class="qn">1</span>¿Plasma y médula son lo mismo?</summary><div class="body"><p>No. El <b>plasma</b> es la parte líquida de la sangre y lo dona cualquier adulto sano, cuando quiera. La <b>médula</b> son células madre: te inscribes en un registro y solo donas si eres compatible con un paciente concreto.</p></div></details>
-      <details><summary><span class="qn">2</span>¿Para qué se usa el plasma?</summary><div class="body"><p>Una pequeña parte se transfunde directamente a pacientes. La mayoría se envía a fabricar medicamentos (inmunoglobulinas, albúmina, factores de coagulación).</p></div></details>
-      <details><summary><span class="qn">3</span>¿Me quedo débil después?</summary><div class="body"><p>Como recuperas tus glóbulos rojos, la mayoría de personas se encuentra bien. Bebe líquido, come algo y evita el ejercicio intenso ese día.</p></div></details>
-      <details><summary><span class="qn">4</span>¿Puedo donar plasma si ya dono sangre?</summary><div class="body"><p>Sí, son compatibles, aunque hay que respetar intervalos entre donaciones. El personal del Centro de Transfusión te indicará cuándo puedes volver.</p></div></details>
-      <p class="note">El equipo del U-Lab completará esta sección con su documento "Saber más" sobre plasma.</p>
-    </section>
-
-    <section id="p-donde">
-      <span class="kicker">Dónde</span>
-      <h2>¿Dónde puedo donar plasma en Madrid?</h2>
-      <div class="contact">
-        <p><b>Centro de Transfusión de la Comunidad de Madrid</b> (Valdebernardo) y puntos fijos en hospitales públicos como La Paz, del Henares, Infanta Sofía, Ramón y Cajal, Príncipe de Asturias, Móstoles y Severo Ochoa.</p>
-        <p style="margin-top:10px">📞 Cita: <b>91 301 72 40</b><br>✉️ <b>donarplasma@salud.madrid.org</b></p>
-      </div>
-    </section>
-
-    <section id="p-mat">
-      <span class="kicker">Hecho por estudiantes UAX</span>
-      <h2>Materiales sobre plasma</h2>
-      <div class="mats" id="matsPlasma"></div>
-    </section>
-  </div>
-</main>
 
 <!-- ================= EVENTO (común) ================= -->
 <div class="wrap">
@@ -419,10 +338,6 @@ const MATERIALES = {
     {ic:"📊", t:"Presentación completa", d:"PPT de difusión", url:""},
     {ic:"📄", t:"Documento Saber más", d:"Las 9 preguntas en PDF", url:""},
     {ic:"📣", t:"Cómo hacer una campaña", d:"Oficina del Voluntariado · PPT", url:""}
-  ],
-  plasma: [
-    {ic:"📄", t:"Saber más · Plasma", d:"Documento PDF", url:""},
-    {ic:"📊", t:"Presentación sobre plasma", d:"PPT formal", url:""}
   ]
 };
 
@@ -434,25 +349,7 @@ function renderMats(list, el){
   }).join("");
 }
 renderMats(MATERIALES.medula, document.getElementById("matsMedula"));
-renderMats(MATERIALES.plasma, document.getElementById("matsPlasma"));
 
-/* Switch médula / plasma */
-const HERO = {
-  medula:{t:"¿Quieres saber más?", p:"Puede que tu médula sea la única compatible con alguien que la necesita. Descubre en 5 minutos qué es, cómo se dona y por qué no da miedo."},
-  plasma:{t:"Dona plasma, crea medicamentos", p:"Con tu plasma se fabrican fármacos que miles de pacientes necesitan y que no se pueden producir en un laboratorio."}
-};
-function show(v){
-  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("active", x.id===v));
-  document.querySelectorAll(".switch button").forEach(b=>b.setAttribute("aria-selected", b.dataset.v===v));
-  document.body.classList.toggle("plasma", v==="plasma");
-  document.getElementById("heroTitle").textContent = HERO[v].t;
-  document.getElementById("heroText").textContent = HERO[v].p;
-}
-document.querySelectorAll(".switch button").forEach(b=>b.addEventListener("click",()=>{
-  show(b.dataset.v);
-  if(location.hash!=="#"+b.dataset.v) history.replaceState(null,"","#"+b.dataset.v);
-}));
-if(location.hash==="#plasma") show("plasma");
 
 /* Mitos */
 document.querySelectorAll(".myth").forEach(m=>m.addEventListener("click",()=>m.classList.toggle("on")));
@@ -469,7 +366,7 @@ function evalQuiz(){
   const r=document.getElementById("quizRes");
   if(Object.keys(ans).length<3) return;
   let msg;
-  if(ans.edad==="no") msg="Ahora mismo no puedes inscribirte en el registro de médula (solo de 18 a 40 años), ¡pero puedes ayudar compartiendo esta página! Y si eres mayor de edad, quizá puedas donar <b>sangre o plasma</b>.";
+  if(ans.edad==="no") msg="Ahora mismo no puedes inscribirte en el registro de médula (solo de 18 a 40 años), ¡pero puedes ayudar compartiendo esta página! Y si eres mayor de edad, quizá puedas donar <b>sangre</b>.";
   else if(ans.peso==="no") msg="Para donar hace falta pesar más de 50 kg. Aun así, compartir esta información también salva vidas: ¡pásala!";
   else if(ans.salud==="no") msg="Algunas enfermedades impiden donar. Consulta tu caso con el personal sanitario el día de la Macrodonación: ellos te dirán si puedes.";
   else if(ans.salud==="duda") msg="¡Probablemente sí! Ven el <b>16 de diciembre</b> y el personal sanitario resolverá tus dudas antes de inscribirte.";
